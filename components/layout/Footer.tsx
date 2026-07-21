@@ -1,0 +1,78 @@
+import { CONTACT } from "@/lib/contact";
+
+const NAV = [
+  { label: "Craft", href: "#craft" },
+  { label: "Products", href: "#products" },
+  { label: "Partner", href: "#partner" },
+  { label: "Capacity", href: "#numbers" },
+  { label: "Contact", href: "#enquiry" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-ink text-paper">
+      <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Shree Gautam Enterprises" width={44} height={44} className="h-11 w-11 object-contain [filter:brightness(0)_invert(1)]" />
+              <span className="font-display text-xl">Shree Gautam Enterprises</span>
+            </div>
+            <p className="mt-6 max-w-sm font-display text-3xl font-light leading-tight text-steel-300">
+              Stainless steel, engineered since {CONTACT.established}.
+            </p>
+          </div>
+
+          {/* Nav */}
+          <div>
+            <h4 className="eyebrow mb-5 text-steel-500">Explore</h4>
+            <ul className="space-y-3">
+              {NAV.map((n) => (
+                <li key={n.href}>
+                  <a
+                    href={n.href}
+                    className="text-sm text-steel-300 transition-colors hover:text-paper"
+                  >
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="eyebrow mb-5 text-steel-500">Visit / Contact</h4>
+            <address className="not-italic text-sm leading-relaxed text-steel-300">
+              {CONTACT.addressLines.map((l) => (
+                <span key={l} className="block">
+                  {l}
+                </span>
+              ))}
+              <a
+                href={`tel:${CONTACT.phoneDial}`}
+                className="mt-4 block transition-colors hover:text-paper"
+              >
+                {CONTACT.phoneDisplay}
+              </a>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="block transition-colors hover:text-paper"
+              >
+                {CONTACT.email}
+              </a>
+            </address>
+          </div>
+        </div>
+
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-steel-500 md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} {CONTACT.company}. All rights reserved.
+          </p>
+          <p>{CONTACT.gst}</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
