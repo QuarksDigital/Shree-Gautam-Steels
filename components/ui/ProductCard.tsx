@@ -6,7 +6,7 @@ import type { Product } from "@/types/product";
 /**
  * Premium product card. Loads the real product photo and gracefully falls back
  * to a brushed-steel placeholder if the image can't load — so the grid always
- * looks intentional.
+ * looks intentional. A soft shine sweeps across the image on hover.
  */
 export default function ProductCard({ product }: { product: Product }) {
   const [imgOk, setImgOk] = useState(true);
@@ -14,10 +14,10 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <article
       data-cursor
-      className="group relative flex flex-col overflow-hidden border border-[var(--line)] bg-paper transition-colors duration-500 hover:bg-white"
+      className="group relative flex flex-col overflow-hidden border border-(--line) bg-paper transition-colors duration-500 hover:bg-white"
     >
       {/* Visual */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-white">
+      <div className="sheen-hover relative aspect-4/5 overflow-hidden bg-white">
         {imgOk ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: Product }) {
             alt={product.name}
             loading="lazy"
             onError={() => setImgOk(false)}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
           />
         ) : (
           <div className="steel-surface sheen-sweep flex h-full w-full items-center justify-center">
@@ -40,7 +40,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </span>
 
         {/* Spec reveal */}
-        <div className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/90 p-5 text-paper backdrop-blur transition-transform duration-500 group-hover:translate-y-0">
+        <div className="absolute inset-x-0 bottom-0 z-3 translate-y-full bg-ink/90 p-5 text-paper backdrop-blur transition-transform duration-500 group-hover:translate-y-0">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
             <div>
               <dt className="text-steel-400">Material</dt>

@@ -216,3 +216,37 @@ html.lenis, html.lenis body { height: auto; }
     drop-shadow(0 -1px 0.75px rgba(0, 0, 0, 0.16));
   opacity: 0.92;
 }
+
+/* Keep the moving sheen purely decorative */
+.sheen-sweep::before { pointer-events: none; }
+
+/* Hover-triggered shine sweep (used on product cards) */
+.sheen-hover { position: relative; overflow: hidden; }
+.sheen-hover::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: rotate(8deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.group:hover .sheen-hover::before {
+  animation: sweep-once 1s ease-out forwards;
+}
+@keyframes sweep-once {
+  0% { left: -60%; opacity: 1; }
+  100% { left: 130%; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .sheen-hover::before { animation: none; opacity: 0; }
+}

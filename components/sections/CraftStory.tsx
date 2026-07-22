@@ -3,36 +3,43 @@
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 
+const CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3Fx5a7baRpsLLM7dpzLApIYsyKU";
+
 const STEPS = [
   {
     n: "01",
     title: "Raw Steel",
     body: "Food-grade 304 and 202 stainless coils, sourced to spec and verified for composition before a single sheet is cut.",
     chips: ["304 / 202 grade", "Verified composition", "Certified coils"],
+    image: `${CDN}/hf_20260722_093822_c6afb36a-91d7-4577-810e-b6be3e6d38d4.png`,
   },
   {
     n: "02",
     title: "Forming",
     body: "Deep-draw presses and spinning lathes shape each vessel — consistent gauge, true circles, clean rims.",
     chips: ["Deep-draw press", "Precision spinning", "True-circle rims"],
+    image: `${CDN}/hf_20260722_093826_d5c77f50-42b5-4014-8c24-851fe03764e1.png`,
   },
   {
     n: "03",
     title: "Triply Bonding",
     body: "An aluminium core is impact-bonded between two steel layers for even, edge-to-edge heat with no hot spots.",
     chips: ["Aluminium core", "Impact-bonded", "Even heat"],
+    image: `${CDN}/hf_20260722_093828_c905b425-d9f3-46b6-b114-e8840f6948f2.png`,
   },
   {
     n: "04",
     title: "Finishing",
     body: "Mirror and matte finishes are polished by hand and machine to a uniform, export-grade sheen.",
     chips: ["Mirror polish", "Matte options", "Export-grade"],
+    image: `${CDN}/hf_20260722_093832_e70619c6-362f-4d3f-a249-5c06e22e0615.png`,
   },
   {
     n: "05",
     title: "Quality Control",
     body: "Every batch is checked for gauge, seal, finish and dimension before it is cleared for dispatch.",
     chips: ["Gauge check", "Seal test", "Batch cleared"],
+    image: `${CDN}/hf_20260722_093933_b824aa60-d6a1-4461-bb00-653e1f9b06ec.png`,
   },
 ];
 
@@ -56,7 +63,6 @@ export default function CraftStory() {
           trigger: root.current,
           pin: true,
           scrub: 1,
-          // 1.15x makes the horizontal glide a touch slower than the scroll.
           end: () => "+=" + maxScroll() * 1.15,
           invalidateOnRefresh: true,
         },
@@ -131,9 +137,16 @@ export default function CraftStory() {
                   ))}
                 </div>
               </div>
-              <div className="hidden md:block">
-                <div className="steel-surface sheen-sweep relative aspect-square w-full max-w-xs rounded-2xl">
-                  <span className="absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">
+              <div>
+                <div className="sheen-sweep relative aspect-square w-full max-w-xs overflow-hidden rounded-2xl bg-steel-800">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute bottom-4 left-4 z-10 rounded-full bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
                     Stage {s.n}
                   </span>
                 </div>

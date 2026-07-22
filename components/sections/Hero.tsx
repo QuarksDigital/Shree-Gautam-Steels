@@ -18,7 +18,7 @@ export default function Hero() {
           "-=0.4",
         )
         .from(".hero-sub", { y: 20, opacity: 0, duration: 0.8 }, "-=0.7")
-        .from(".hero-cta", { y: 20, opacity: 0, duration: 0.7, stagger: 0.1 }, "-=0.6")
+        .from(".hero-cta", { opacity: 0, duration: 0.7, stagger: 0.1 }, "-=0.6")
         .from(".hero-meta", { opacity: 0, duration: 1 }, "-=0.8")
         .from(
           ".hero-disc",
@@ -100,10 +100,29 @@ export default function Hero() {
           export partners worldwide.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div
+          className="mt-10"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
           <a
             href="#enquiry"
-            className="hero-cta group inline-flex h-[54px] items-center justify-center gap-2 rounded-full border border-transparent bg-ink px-7 text-sm font-semibold text-paper transition-transform duration-300 hover:-translate-y-0.5"
+            className="hero-cta group rounded-full bg-ink text-sm font-semibold text-paper transition-transform duration-300 hover:-translate-y-0.5"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              height: "54px",
+              padding: "0 1.75rem",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+            }}
           >
             Become a Partner
             <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -112,7 +131,18 @@ export default function Hero() {
           </a>
           <a
             href="#products"
-            className="hero-cta inline-flex h-[54px] items-center justify-center gap-2 rounded-full border border-[var(--line-strong)] px-7 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
+            className="hero-cta rounded-full text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              height: "54px",
+              padding: "0 1.75rem",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+              border: "1px solid var(--line-strong)",
+            }}
           >
             View the Range
           </a>
